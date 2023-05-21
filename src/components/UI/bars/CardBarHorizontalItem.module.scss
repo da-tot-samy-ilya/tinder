@@ -1,0 +1,15 @@
+@media (max-width: 1000px) {
+    .bar_mobile__item {
+        background-color: rgba(228, 228, 228, 0.45);
+        width: 100%;
+        border-radius: 2px;
+        transition: 200ms;
+        cursor: pointer;
+    }
+    .bar_mobile__item:not(:first-child) {
+        margin-left: 5px;
+    }
+    .bar_mobile__item:hover {
+        background-color: rgba(228, 228, 228, 0.7);
+    }
+}

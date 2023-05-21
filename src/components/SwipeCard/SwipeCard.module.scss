@@ -1,0 +1,77 @@
+
+.card {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 100%;
+    height: 700px;
+    background-color: white;
+    border-radius: 21px;
+    overflow: hidden;
+    display: flex;
+    -webkit-box-shadow: 3px 6px 35px -8px rgba(67, 67, 67, 0.44);
+    -moz-box-shadow: 3px 6px 35px -8px rgba(67, 67, 67, 0.44);
+    box-shadow: 3px 6px 35px -8px rgba(67, 67, 67, 0.44);
+}
+.profile_photo_wrap {
+    position: relative;
+    height: 100%;
+    width: 50%;
+
+}
+.profile_photo__btns {
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.profile_description {
+    position: relative;
+    width: 50%;
+    padding: 30px;
+}
+.profile_description_sub {
+    width: 90%;
+}
+.name {
+    font-family: 'Vollkorn', serif;
+    font-size: 40px;
+}
+.distance {
+    color: #A4A4A4;
+}
+.town {
+    color: #676767;
+    margin-top: 7px;
+}
+.text {
+    margin-top: 10px;
+}
+
+
+@media (max-width: 1000px) {
+    .card {
+        flex-direction: column;
+        height: 1200px;
+    }
+    .profile_photo_wrap {
+        width: 100%;
+    }
+    .profile_description {
+        width: 100%;
+    }
+
+}
+@media (max-width: 800px) {
+    .profile_photo_wrap {
+        height: 600px;
+    }
+    .card {
+        height: auto;
+    }
+}
+@media (max-width: 500px) {
+    .profile_photo_wrap {
+        height: 450px;
+    }
+}

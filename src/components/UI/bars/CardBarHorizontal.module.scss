@@ -1,0 +1,14 @@
+.bar_mobile {
+    display: none;
+}
+@media (max-width: 1000px) {
+    .bar_mobile {
+        display: flex;
+        position: absolute;
+        width: 90%;
+        height: 4px;
+        left: 50%;
+        top: 20px;
+        transform: translate(-50%, 0);
+    }
+}

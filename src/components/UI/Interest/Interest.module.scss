@@ -1,0 +1,33 @@
+.interest {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 16px;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    position: relative;
+
+}
+.interest__close {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 16px;
+    color: white;
+    padding: 5px 30px 5px 15px;
+    position: relative;
+}
+.close {
+    cursor: pointer;
+    margin-left: 7px;
+    margin-top: 4px;
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-image: url("./img/plus.svg");
+    background-size: contain;
+    position: absolute;
+    transform: rotate(45deg);
+    transition-duration: 0.2s;
+    &:hover {
+        opacity: 0.6;
+    }
+}

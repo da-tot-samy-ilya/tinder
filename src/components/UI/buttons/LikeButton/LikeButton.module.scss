@@ -1,0 +1,22 @@
+.button {
+    width: 60px;
+    height: 60px;
+    background: rgb(78,201,91);
+    background: linear-gradient(225deg, rgba(78,201,91,1) 0%, rgba(84,154,52,1) 100%);
+    border: none;
+    border-radius: 60px;
+    transition: 200ms;
+    cursor: pointer;
+    margin-left: 10px;
+    &:hover {
+        background: rgb(78,201,91);
+        background: linear-gradient(225deg, rgba(78,201,91,1) 0%, rgba(52,154,89,1) 100%);
+    }
+    &:active {
+        background: rgb(78,201,91);
+        background: linear-gradient(225deg, rgba(78,201,91,1) 0%, rgba(52,152,154,1) 100%);
+    }
+    >img {
+        margin-top: 6px;
+    }
+}

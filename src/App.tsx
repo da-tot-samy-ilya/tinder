@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import Navbar from "./components/Navbar/Navbar";
+import {TinderUser} from "./types/TinderUser";
+import AppRouter from "./components/AppRouter/AppRouter";
+import {firestoreToUsers, getAllUsers} from "./firebase";
+import {collection, getDocs} from "firebase/firestore"
+const App: React.FC = () => {
+    const [user, setUser] = useState(TinderUser.defaultUser)
+    const [isLogged, setIsLogged] = useState(false)
+    const [users, setUsers] = useState<TinderUser[]>([])
+    const onSignIn = (newUser: TinderUser) => {
+        setUser(newUser)
+        setIsLogged(true)
+    }
+    const onSignOut = () => {
+        setIsLogged(false)
+    }
+    const editUser = (newUser: TinderUser) => {
+        setUser(newUser)
+    }
+    const loadUsers = async () => {
+        const data = await getAllUsers()
+        const arr = data.docs.map(el => ({...el.data(), id: el.id})).map(el => firestoreToUsers(el))
+        setUsers(arr)
+        console.log(arr)
+        setUser(arr.find(el => el.id === user.id) || user)
+    }
 
-function App() {
+    useEffect( () => {
+        loadUsers()
+    }, [isLogged])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+            <Navbar user={user} isLogged={isLogged} onSignOutSuper={onSignOut} onSignInSuper={onSignIn}/>
+            <div className="fit_container">
+                <AppRouter onSaveUser={editUser} allUsers={users} user={user} onSignIn={onSignIn} onSignOut={onSignOut} isLogged={isLogged} />
+            </div>
     </div>
   );
 }

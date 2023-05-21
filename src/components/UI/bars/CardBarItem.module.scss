@@ -1,0 +1,13 @@
+.bar__item {
+    background-color: #E4E4E4;
+    height: 100%;
+    border-radius: 2px;
+    transition: 200ms;
+    cursor: pointer;
+}
+.bar__item:not(:first-child) {
+    margin-top: 10px;
+}
+.bar__item:hover {
+    background-color: #bbbbbb;
+}

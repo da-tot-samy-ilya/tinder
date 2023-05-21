@@ -1,0 +1,26 @@
+.other_message {
+    padding: 10px 50px 10px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+    position: relative;
+    background-color: #5a9dd9;
+}
+.my_message {
+    padding: 10px 50px 10px 10px;
+    border-radius: 10px;
+    background-color: #6fc8ee;
+    margin-bottom: 10px;
+    width: fit-content;
+    margin-left: auto;
+    position: relative;
+}
+.userName {
+    font-weight:600;
+}
+.message_date {
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+    font-size: 12px;
+}
