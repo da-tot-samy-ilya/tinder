@@ -7,7 +7,8 @@ import chats from './img/chats.svg'
 import {TinderUser} from "../../types/TinderUser";
 import {Link} from "react-router-dom";
 import MyButton from "../UI/buttons/MyButton/MyButton";
-import { onSignIn} from "../../firebase";
+import {FirestoreUsers} from "../../firebase/users";
+
 
 interface INavbarProps {
     user: TinderUser
@@ -21,7 +22,7 @@ interface INavbarProps {
 const Navbar: FC<INavbarProps> = ({isLogged, user, onSignInSuper, onSignOutSuper}) => {
 
     const onClickSignIn = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        const newUser = await onSignIn(e)
+        const newUser = await FirestoreUsers.onSignIn(e)
         onSignInSuper(newUser)
     }
 

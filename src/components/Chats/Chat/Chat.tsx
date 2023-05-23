@@ -8,7 +8,7 @@ import {TinderChat} from "../../../types/TinderChat";
 import MyInput from "../../UI/inputs/MyInput/MyInput";
 import MyButton from "../../UI/buttons/MyButton/MyButton";
 import {useParams} from "react-router-dom";
-import {updateUser} from "../../../firebase";
+
 
 interface IChatProps {
     mod: "mini" | "full"

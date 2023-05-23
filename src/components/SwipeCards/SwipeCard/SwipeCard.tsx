@@ -9,10 +9,8 @@ import ImgSlider from "../../UI/ImgSlider/ImgSlider";
 import {TinderUser} from "../../../types/TinderUser";
 import SendMessageButton from "../../UI/buttons/SendMessageButton/SendMessageButton";
 import {Link} from "react-router-dom";
-import {updateDoc} from "firebase/firestore";
-import {updateUser} from "../../../firebase";
-import Chat from "../../Chats/Chat/Chat";
 import {TinderChat} from "../../../types/TinderChat";
+import {FirestoreUsers} from "../../../firebase/users";
 
 interface ISwipeCardProps {
     user: TinderUser,
@@ -30,8 +28,8 @@ const SwipeCard: FC<ISwipeCardProps> = ({user, currUser, like, dislike, isVisibl
         if (!correctChat) {
             currUser.chats.push(new TinderChat(user.id))
             user.chats.push(new TinderChat(currUser.id))
-            await updateUser(currUser)
-            await updateUser(user)
+            await FirestoreUsers.updateUser(currUser)
+            await FirestoreUsers.updateUser(user)
         }
         console.log(currChatID)
     }

@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Navbar from "./components/Navbar/Navbar";
 import {TinderUser} from "./types/TinderUser";
 import AppRouter from "./components/AppRouter/AppRouter";
-import {firestoreToUsers, getAllUsers} from "./firebase";
 import {collection, getDocs} from "firebase/firestore"
+import {FirestoreUsers} from "./firebase/users";
 const App: React.FC = () => {
     const [user, setUser] = useState(TinderUser.defaultUser)
     const [isLogged, setIsLogged] = useState(false)
@@ -19,8 +19,8 @@ const App: React.FC = () => {
         setUser(newUser)
     }
     const loadUsers = async () => {
-        const data = await getAllUsers()
-        const arr = data.docs.map(el => ({...el.data(), id: el.id})).map(el => firestoreToUsers(el))
+        const data = await FirestoreUsers.getAllUsers()
+        const arr = data.docs.map(el => ({...el.data(), id: el.id})).map(el => FirestoreUsers.firestoreToUsers(el))
         console.log(arr)
         setUsers(arr)
 

@@ -6,8 +6,9 @@ import MyButton from "../UI/buttons/MyButton/MyButton";
 import {InterestClasses} from "../../types/InterestClasses";
 import InterestsStore from "./InterestsStore/InterestsStore";
 import PhotosStore from "./PhotosStore/PhotosStore";
-import {updateUser} from "../../firebase";
+
 import {TinderImage} from "../../types/TinderImage";
+import {FirestoreUsers} from "../../firebase/users";
 
 interface IEditProfileProps {
     user: TinderUser
@@ -95,7 +96,7 @@ const EditProfile: FC<IEditProfileProps> = ({user, onSaveUser, onLogOut}) => {
         setIsSomethingChanged(false)
         const newUser = new TinderUser(user.id, name, age, town, interests, description, images, user.mainImage)
         onSaveUser(newUser)
-        await updateUser(newUser)
+        await FirestoreUsers.updateUser(newUser)
     }
 
 

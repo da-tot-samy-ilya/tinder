@@ -2,7 +2,8 @@ import React, {FC} from 'react';
 import styles from "./PhotosStoreItem.module.scss"
 import plusGray from "./img/plus-gray.svg"
 import plusWhite from "./img/plus-white.svg"
-import {uploadImage} from "../../../../firebase";
+import {FirestoreImages} from "../../../../firebase/images";
+
 interface IPhotoStoreItemProps {
     src: string
     id: string
@@ -21,7 +22,7 @@ const PhotosStoreItem: FC<IPhotoStoreItemProps> = ({src, userID, id, isEmpty, on
     const onUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
         if (files) {
-           await uploadImage(files[0], userID)
+           await FirestoreImages.uploadImage(files[0], userID)
            onAdd(URL.createObjectURL(files[0]))
         }
 
