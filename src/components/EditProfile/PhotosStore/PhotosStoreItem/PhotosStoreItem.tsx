@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styles from "./PhotosStoreItem.module.scss"
 import plusGray from "./img/plus-gray.svg"
 import plusWhite from "./img/plus-white.svg"
-import {uploadImage} from "../../firebase";
+import {uploadImage} from "../../../../firebase";
 interface IPhotoStoreItemProps {
     src: string
     id: string

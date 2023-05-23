@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from "./InterestsInRow.module.scss"
-import {InterestClass} from "../../types/InterestClass";
-import Interest from "../UI/Interest/Interest";
+import {InterestClass} from "../../../../types/InterestClass";
+import Interest from "../../../UI/Interest/Interest";
 
 interface IInterestsInRowProps {
     interests: InterestClass[]

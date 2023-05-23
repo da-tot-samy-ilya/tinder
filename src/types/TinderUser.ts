@@ -15,7 +15,15 @@ export class TinderUser {
     chats: TinderChat[]
 
     static defaultUser = new TinderUser("0", "")
-    constructor(id: string, name: string, age: number = 0, town: string = "", interests: InterestClass[] = [], description: string = "", images: TinderImage[] = [], mainImage: TinderImage = TinderImage.defaultImage) {
+    constructor(id: string,
+                name: string,
+                age: number = 0,
+                town: string = "",
+                interests: InterestClass[] = [],
+                description: string = "",
+                images: TinderImage[] = [],
+                mainImage: TinderImage = TinderImage.defaultImage,
+                chats: TinderChat[] = []) {
         this.id = id
         this.name = name
         this.age = age
@@ -25,6 +33,6 @@ export class TinderUser {
         this.description = description
         this.images = images
         this.mainImage = mainImage
-        this.chats = []
+        this.chats = chats
     }
 }

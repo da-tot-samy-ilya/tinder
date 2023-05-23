@@ -7,6 +7,7 @@ import {TinderUser} from "../../types/TinderUser";
 import {Navigate} from "react-router-dom";
 import firebase from "firebase/compat";
 import Chats from "../Chats/Chats";
+import Chat from "../Chats/Chat/Chat";
 
 
 interface IAppRouterProps {
@@ -24,8 +25,9 @@ const AppRouter: FC<IAppRouterProps> = ({user, allUsers, onSignIn, onSignOut, is
         isLogged ?
             <Routes>
                 <Route path="/profile" element={<EditProfile onLogOut={onSignOut} onSaveUser={onSaveUser} user={user}/>}/>
-                <Route path="/chats" element={<Chats user={user}/>}/>
-                <Route path="/" element={<SwipeCards users={allUsers}/>}/>
+                <Route path="/chats" element={<Chats allUsers={allUsers} user={user}/>}/>
+                <Route path="/chats/:id" element={<Chat mod="full"  allUsers={allUsers} user={user}/>}/>
+                <Route path="/" element={<SwipeCards currUser={user} users={allUsers}/>}/>
                 <Route path="*" element={<Navigate to="/" replace />}/>
             </Routes>
             :

@@ -1,17 +1,18 @@
 import React, {FC, useState} from 'react';
 import {TinderUser} from "../../types/TinderUser";
-import SwipeCard from "../SwipeCard/SwipeCard";
+import SwipeCard from "./SwipeCard/SwipeCard";
 import styles from "./SwipeCards.module.scss"
 
 interface ISwipeUsersProps {
     users: TinderUser[]
+    currUser: TinderUser
 }
-const SwipeCards: FC<ISwipeUsersProps> = ({users}) => {
+const SwipeCards: FC<ISwipeUsersProps> = ({users, currUser}) => {
 
     const [currCardId, setCurrCardId] = useState(0)
     const [isEmptyRecomendations, setIsEmptyRecomendations] = useState(false)
     function swipeNextCard(e: React.MouseEvent<HTMLButtonElement>) {
-        if (currCardId === users.length-1) {
+        if (currCardId === users.length-2) {
             setIsEmptyRecomendations(true)
         }
         else {
@@ -25,13 +26,16 @@ const SwipeCards: FC<ISwipeUsersProps> = ({users}) => {
             {isEmptyRecomendations ?
                 <h1>No more recommendations :(</h1>
                 :
-                users.map((el, i) =>
+                users.filter(el => currUser.id !== el.id).map((el, i) =>
                     <SwipeCard
+                        currUser={currUser}
                         user={el}
                         key={el.id}
                         like={swipeNextCard}
                         dislike={swipeNextCard}
-                        isVisible={currCardId === i}/>)}
+                        isVisible={currCardId === i}/>)
+
+            }
         </div>
     );
 };

@@ -21,9 +21,11 @@ const App: React.FC = () => {
     const loadUsers = async () => {
         const data = await getAllUsers()
         const arr = data.docs.map(el => ({...el.data(), id: el.id})).map(el => firestoreToUsers(el))
-        setUsers(arr)
         console.log(arr)
+        setUsers(arr)
+
         setUser(arr.find(el => el.id === user.id) || user)
+
     }
 
     useEffect( () => {

@@ -3,7 +3,6 @@ import styles from "./LikeButton.module.scss"
 import like from "./img/like.svg"
 interface IButtonProps {
     onclick: MouseEventHandler<HTMLButtonElement>
-    className?: string
 }
 
 

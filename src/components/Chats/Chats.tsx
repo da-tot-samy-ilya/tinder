@@ -1,19 +1,20 @@
 import React, {FC} from 'react';
 import styles from "./Chats.module.scss"
-import Chat from "../Chat/Chat";
+import Chat from "./Chat/Chat";
 import {TinderUser} from "../../types/TinderUser";
-import {TinderChat} from "../../types/TinderChat";
 
 interface IChatsProps {
     user: TinderUser
+    allUsers: TinderUser[]
 }
 
 
-const Chats: FC<IChatsProps> = ({user}) => {
-
+const Chats: FC<IChatsProps> = ({user, allUsers}) => {
+    console.log(user)
     return (
         <div className={styles.chats}>
-            <Chat chat={new TinderChat([user])} mod="full" user={user}/>
+            {user.chats.map(el => <Chat allUsers={allUsers} key={el.userID} mod="mini" user={user}/>)}
+
 
 
         </div>

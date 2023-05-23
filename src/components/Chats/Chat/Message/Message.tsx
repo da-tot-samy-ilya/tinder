@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import styles from "./Message.module.scss"
-import {TinderMessage} from "../../types/TinderMessage";
-import {TinderUser} from "../../types/TinderUser";
+import {TinderMessage} from "../../../../types/TinderMessage";
+import {TinderUser} from "../../../../types/TinderUser";
 
 interface IMessageProps {
     user: TinderUser

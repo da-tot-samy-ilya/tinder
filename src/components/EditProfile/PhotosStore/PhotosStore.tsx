@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import styles from "./PhotosStore.module.scss"
-import PhotosStoreItem from "../PhotosStoreItem/PhotosStoreItem";
-import {TinderImage} from "../../types/TinderImage";
+import PhotosStoreItem from "./PhotosStoreItem/PhotosStoreItem";
+import {TinderImage} from "../../../types/TinderImage";
 
 interface IPhotoStoreProps {
     images: TinderImage[]

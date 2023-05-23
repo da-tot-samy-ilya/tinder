@@ -1,14 +1,15 @@
 import {TinderMessage} from "./TinderMessage";
-import {TinderUser} from "./TinderUser";
 
 export class TinderChat {
     messages: TinderMessage[]
-    users: TinderUser[]
+    userID: string
+    id: string
     addMessage = (message: TinderMessage) => {
         this.messages.push(message)
     }
-    constructor(users: TinderUser[]) {
-        this.users = users
+    constructor(userID: string) {
+        this.userID = userID
         this.messages = []
+        this.id = Date.now().toString()
     }
 }

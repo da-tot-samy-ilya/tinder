@@ -4,9 +4,9 @@ import MyInput from "../UI/inputs/MyInput/MyInput";
 import {TinderUser} from "../../types/TinderUser";
 import MyButton from "../UI/buttons/MyButton/MyButton";
 import {InterestClasses} from "../../types/InterestClasses";
-import InterestsStore from "../InterestsStore/InterestsStore";
-import PhotosStore from "../PhotosStore/PhotosStore";
-import {updateDocument} from "../../firebase";
+import InterestsStore from "./InterestsStore/InterestsStore";
+import PhotosStore from "./PhotosStore/PhotosStore";
+import {updateUser} from "../../firebase";
 import {TinderImage} from "../../types/TinderImage";
 
 interface IEditProfileProps {
@@ -95,7 +95,7 @@ const EditProfile: FC<IEditProfileProps> = ({user, onSaveUser, onLogOut}) => {
         setIsSomethingChanged(false)
         const newUser = new TinderUser(user.id, name, age, town, interests, description, images, user.mainImage)
         onSaveUser(newUser)
-        await updateDocument(newUser)
+        await updateUser(newUser)
     }
 
 

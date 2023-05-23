@@ -1,10 +1,10 @@
 import React, {ChangeEvent, FC, useState} from 'react';
 import styles from "./InterestsStore.module.scss"
-import MySelect from "../UI/selects/MySelect/MySelect";
-import {InterestClass} from "../../types/InterestClass";
-import MyButton from "../UI/buttons/MyButton/MyButton";
-import Interest from "../UI/Interest/Interest";
-import {InterestClasses} from "../../types/InterestClasses";
+import MySelect from "../../UI/selects/MySelect/MySelect";
+import {InterestClass} from "../../../types/InterestClass";
+import MyButton from "../../UI/buttons/MyButton/MyButton";
+import Interest from "../../UI/Interest/Interest";
+import {InterestClasses} from "../../../types/InterestClasses";
 
 interface IInterestsStoreProps {
     interests: InterestClass[]

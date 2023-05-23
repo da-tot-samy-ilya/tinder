@@ -47,7 +47,7 @@ export const onSignOut = async () => {
     });
 }
 
-export const updateDocument = async (user: TinderUser) => {
+export const updateUser = async (user: TinderUser) => {
     await updateDoc(doc(db, "users", user.id), customObjToFirestore(user));
 }
 
@@ -55,7 +55,7 @@ export const updateDocument = async (user: TinderUser) => {
 export const customObjToFirestore = (user: object) => JSON.parse(JSON.stringify(user))
 
 export const firestoreToUsers = (obj: any) => {
-    return new TinderUser(obj.id, obj.name, obj.age, obj.town, obj.interests, obj.description, obj.images, obj.mainImage)
+    return new TinderUser(obj.id, obj.name, obj.age, obj.town, obj.interests, obj.description, obj.images, obj.mainImage, obj.chats)
 }
 
 export const uploadImage = async(image: File, userID: string) => {
