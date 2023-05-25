@@ -40,6 +40,6 @@ export class FirestoreUsers {
     static userToFirestore = (user: TinderUser) => JSON.parse(JSON.stringify(user))
 
     static firestoreToUsers = (obj: any) => {
-        return new TinderUser(obj.id, obj.name, obj.age, obj.town, obj.interests, obj.description, obj.images, obj.mainImage, obj.chats)
+        return new TinderUser(obj.id, obj.name, obj.age, obj.town, obj.interests, obj.description, obj.images, obj.mainImage)
     }
 }

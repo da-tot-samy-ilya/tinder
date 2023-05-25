@@ -8,9 +8,9 @@ import CardBar from "../../UI/bars/CardBar";
 import ImgSlider from "../../UI/ImgSlider/ImgSlider";
 import {TinderUser} from "../../../types/TinderUser";
 import SendMessageButton from "../../UI/buttons/SendMessageButton/SendMessageButton";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {TinderChat} from "../../../types/TinderChat";
-import {FirestoreUsers} from "../../../firebase/users";
+import {FirestoreChats} from "../../../firebase/chats";
 
 interface ISwipeCardProps {
     user: TinderUser,
@@ -18,23 +18,27 @@ interface ISwipeCardProps {
     isVisible: boolean,
     like: (e: React.MouseEvent<HTMLButtonElement>) => void,
     dislike: (e: React.MouseEvent<HTMLButtonElement>) => void,
+    chats: TinderChat[]
+    addChat: (chat: TinderChat) => void
 }
 
-const SwipeCard: FC<ISwipeCardProps> = ({user, currUser, like, dislike, isVisible}) => {
+const SwipeCard: FC<ISwipeCardProps> = ({addChat, user, currUser, like, dislike, isVisible, chats}) => {
+
+    const navigate = useNavigate()
 
     const onOpenChat = async () => {
-        const correctChat = currUser.chats.find(el => el.userID === user.id)
-
-        if (!correctChat) {
-            currUser.chats.push(new TinderChat(user.id))
-            user.chats.push(new TinderChat(currUser.id))
-            await FirestoreUsers.updateUser(currUser)
-            await FirestoreUsers.updateUser(user)
+        const chat = chats.find(el => (el.user1.id === user.id || el.user2.id === user.id))
+        if (chat) {
+            navigate(`/chats/${chat.id}`)
         }
-        console.log(currChatID)
+        else {
+            const newChat = new TinderChat(user, currUser)
+            addChat(newChat)
+            await FirestoreChats.addChat(newChat)
+            navigate(`/chats/${newChat.id}`)
+        }
     }
 
-    const currChatID = (currUser.chats.find(el => el.userID === user.id) || new TinderChat("")).id
 
     return (
         <div className={styles.card} style={{display: isVisible ? "flex" : "none"}}>
@@ -43,7 +47,7 @@ const SwipeCard: FC<ISwipeCardProps> = ({user, currUser, like, dislike, isVisibl
                 <CardBarHorizontal/>
                 <div className={styles.profile_photo__btns}>
                     <DislikeButton className={styles.profile_photo__btn} onclick={like}/>
-                    <Link to={`/chats/${currChatID}`}><SendMessageButton onclick={() => onOpenChat()}/></Link>
+                    <SendMessageButton onclick={() => onOpenChat()}/>
                     <LikeButton onclick={dislike}/>
                 </div>
             </div>

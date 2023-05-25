@@ -8,6 +8,7 @@ import {Navigate} from "react-router-dom";
 import firebase from "firebase/compat";
 import Chats from "../Chats/Chats";
 import Chat from "../Chats/Chat/Chat";
+import {TinderChat} from "../../types/TinderChat";
 
 
 interface IAppRouterProps {
@@ -17,17 +18,19 @@ interface IAppRouterProps {
     onSignOut: () => void
     isLogged: boolean
     onSaveUser: (user: TinderUser) => void
+    chats: TinderChat[]
+    addChat: (chat: TinderChat) => void
 }
 
 
-const AppRouter: FC<IAppRouterProps> = ({user, allUsers, onSignIn, onSignOut, isLogged, onSaveUser}) => {
+const AppRouter: FC<IAppRouterProps> = ({addChat, user, allUsers, onSignIn, onSignOut, isLogged, onSaveUser, chats}) => {
     return (
         isLogged ?
             <Routes>
                 <Route path="/profile" element={<EditProfile onLogOut={onSignOut} onSaveUser={onSaveUser} user={user}/>}/>
-                <Route path="/chats" element={<Chats allUsers={allUsers} user={user}/>}/>
-                <Route path="/chats/:id" element={<Chat mod="full"  allUsers={allUsers} user={user}/>}/>
-                <Route path="/" element={<SwipeCards currUser={user} users={allUsers}/>}/>
+                <Route path="/chats" element={<Chats chats={chats} user={user} allUsers={allUsers}/>}/>
+                <Route path="/chats/:id" element={<Chat allChats={chats} currUser={user}/>}/>
+                <Route path="/" element={<SwipeCards addChat={addChat} chats={chats} currUser={user} users={allUsers}/>}/>
                 <Route path="*" element={<Navigate to="/" replace />}/>
             </Routes>
             :
